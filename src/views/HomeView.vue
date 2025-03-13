@@ -1,23 +1,17 @@
 <script setup>
 import PokemonList from "../components/Pokemon/PokemonList.vue";
 import FilterPokemon from "../components/FilterPokemon.vue";
-import { ref, computed, onMounted } from "vue";
-// import { fetchPokemon } from "../api/pokemon";
+import { usePokemonStore } from '@/stores/pokemons';
+import { ref, computed } from "vue";
 
-const pokemons = ref([]);
-
-function getPokemons() {
-  fetchPokemon().then((data) => {
-    pokemons.value = data;
-  });
-}
-
+const { pokemons, loading, error, fetchPokemon } = usePokemonStore();
+console.log(usePokemonStore())
 </script>
 
 <template>
   <div class="max-w-[80%]  m-auto">
     <h1>Pokedex</h1>
-    <FilterPokemon @fetch-pokemon="getPokemons" />
+    <FilterPokemon @fetch-pokemon="pokemons" />
     <PokemonList :pokemons="pokemons" />
   </div>
 
