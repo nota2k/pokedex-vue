@@ -11,12 +11,10 @@ const store = usePokemonStore();
 const { selectedPokemon, loading, error } = storeToRefs(store);
 const pokemonId = ref(route.params.id);
 
-// Fonction pour charger les données du Pokémon
 const loadPokemonData = async () => {
   await store.fetchPokemonById(pokemonId.value);
 };
 
-// Charger les données au montage du composant
 onMounted(() => {
   loadPokemonData();
 });
