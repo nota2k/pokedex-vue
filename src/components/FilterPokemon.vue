@@ -1,5 +1,9 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
+import { usePokemonStore } from '@/stores/pokemons';
+
+const store = usePokemonStore();
+
 const emit = defineEmits(['fetch-pokemon'])
 
 function fetchPokemon() {
@@ -9,9 +13,9 @@ function fetchPokemon() {
 
 <template>
   <div class="filter-wrapper p-5 text-lg font-semibold text-left rtl:text-right flex gap-5 flex-wrap">
-    <button @click="fetchPokemon">Fetch Pokemon</button>
+    <button @click="store.fetchPokemon">Fetch Pokemon</button>
     <input type="text" placeholder="Rechercher" class="input max-w-[250px]" />
-    <select  @change="" class="type-select">
+    <select @change="" class="type-select">
       <option selected>Tous</option>
       <option value="poison">Poison</option>
       <option value="plante">Plante</option>

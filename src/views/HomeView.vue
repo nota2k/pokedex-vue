@@ -4,14 +4,14 @@ import FilterPokemon from "../components/FilterPokemon.vue";
 import { usePokemonStore } from '@/stores/pokemons';
 import { ref, computed } from "vue";
 
-const { pokemons, loading, error, fetchPokemon } = usePokemonStore();
-console.log(usePokemonStore())
+const pokemons = usePokemonStore();
+
 </script>
 
 <template>
   <div class="max-w-[80%]  m-auto">
     <h1>Pokedex</h1>
-    <FilterPokemon @fetch-pokemon="pokemons" />
+    <FilterPokemon />
     <PokemonList :pokemons="pokemons" />
   </div>
 
