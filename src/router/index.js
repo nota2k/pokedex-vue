@@ -12,9 +12,9 @@ const router = createRouter({
     },
     {
       path: '/pokemon/:id',
-      name: 'pokemon',
+      name: 'PokemonDetails',
       component: PokemonView,
-      props: route => ({ id: route.params.id })
+      props: true
     }
   ]
 })

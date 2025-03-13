@@ -9,7 +9,7 @@ const pokemons = usePokemonStore();
 </script>
 
 <template>
-  <div class="max-w-[80%]  m-auto">
+  <div class="max-w-[90%]  m-auto">
     <h1>Pokedex</h1>
     <FilterPokemon />
     <PokemonList :pokemons="pokemons" />
