@@ -1,18 +1,42 @@
 <script setup>
-import PokemonList from "../components/Pokemon/PokemonList.vue";
-import FilterPokemon from "../components/FilterPokemon.vue";
+import DetailsComponent from '@/components/PokemonDetails/DetailsComponent.vue'
 import { usePokemonStore } from '@/stores/pokemons';
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
+import { useRoute } from 'vue-router';
+import { storeToRefs } from 'pinia';
 
-const pokemons = usePokemonStore();
+const route = useRoute()
+const store = usePokemonStore();
+
+const { selectedPokemon, loading, error } = storeToRefs(store);
+const pokemonId = ref(route.params.id);
+
+// Fonction pour charger les données du Pokémon
+const loadPokemonData = async () => {
+  await store.fetchPokemonById(pokemonId.value);
+};
+
+// Charger les données au montage du composant
+onMounted(() => {
+  loadPokemonData();
+});
+
+watch(() => route.params.id, (newId) => {
+  pokemonId.value = newId;
+  loadPokemonData();
+});
 
 </script>
 
 <template>
   <div class="max-w-[80%]  m-auto">
     <h1>Pokedex</h1>
-    <FilterPokemon />
-    <PokemonList :pokemons="pokemons" />
+    <div v-if="loading">Chargement en cours...</div>
+    <div v-else-if="error">Erreur: {{ error.message }}</div>
+    <div v-else-if="selectedPokemon">
+      <DetailsComponent :pokemon="selectedPokemon" />
+    </div>
+    <div v-else>Pokémon non trouvé</div>
   </div>
 
 </template>
