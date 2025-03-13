@@ -23,12 +23,13 @@
   }
 
   .card {
-    background-color: rgba(251, 199, 44, 0.3);
+    /* background-color: var(--color-red-500); */
+    border: 3px solid var(--color-red-500);
     border-radius: 10px;
     padding: 10px;
-    box-shadow: -1px 3px 8px rgba(251, 44, 54, 0.3);
-    width: calc((100% / 7) - 10px);
-    min-width: 200px;
+    /* box-shadow: -1px 3px 8px rgba(251, 44, 54, 0.3); */
+    width: calc((100% / 6) - 10px);
+    min-width: 220px;
     flex-grow: 2;
   }
 }

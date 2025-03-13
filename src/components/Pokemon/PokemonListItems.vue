@@ -48,7 +48,7 @@ const props = defineProps({
 h1 {
   font-size: 1.5em;
   font-weight: 600;
-  font-weight: 500;
+  color: var(--color-red-500)
 }
 
 h2 {
@@ -62,7 +62,7 @@ h2 {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  gap:5px;
+  gap: 5px;
 }
 
 .pokemon-img {
